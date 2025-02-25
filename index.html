@@ -25,12 +25,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
-      padding: 0px 0px;
-      color: #333;
+      background-color: #ffffff; /* Cambio de color rojo a blanco */
+      padding: 0px 0px; /* Reducido el padding para hacer el encabezado más pequeño */
+      color: #333; /* Ajustado el color del texto para contraste */
       animation: slideIn 0.2s ease-out;
-      position: relative;
-      overflow: hidden;
+      position: relative; /* Necesario para el carrusel */
+      overflow: hidden; /* Para ocultar imágenes fuera del contenedor */
     }
 
     /* Animación para el encabezado */
@@ -46,32 +46,33 @@
     /* Carrusel de logos */
     .logo-carousel {
       display: flex;
-      animation: scroll 50s linear infinite;
+      animation: scroll 50s linear infinite; /* Aumento el tiempo para hacer el movimiento más lento */
     }
 
     .logo-carousel img {
-      width: 35px;
-      height: auto;
-      margin-right: 100px;
+      width: 35px;  /* Tamaño uniforme y más pequeño */
+      height: auto;  /* Mantener la proporción */
+      margin-right: 100px; /* Espacio entre imágenes */
       transition: transform 0.3s ease;
     }
 
     .logo-carousel img:hover {
-      transform: scale(1.1);
+      transform: scale(1.1); /* Efecto hover para el logo */
     }
 
+    /* Animación para el movimiento de las imágenes */
     @keyframes scroll {
       0% {
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-100%); /* Mueve las imágenes completamente fuera */
       }
     }
 
     /* Título en la parte derecha */
     .title {
-      font-size: 0;
+      font-size: 0;  /* Reducido el tamaño de la fuente para hacerlo más pequeño */
       font-weight: bold;
       font-family: 'Arial Narrow', Arial, sans-serif;
       letter-spacing: 1px;
@@ -86,7 +87,7 @@
     .report-container {
       width: 90%;
       max-width: 1200px;
-      height: 80vh;
+      height: 80vh; /* para cambiar el tamaño de reporte de bi */
       margin-top: 0px;
       animation: fadeIn 2s ease-out;
       border: 1px solid #ccc;
@@ -146,6 +147,7 @@
 
   <!-- Script para la interactividad -->
   <script>
+    // Función para que el reporte cambie de tamaño si el usuario cambia el tamaño de la ventana
     window.addEventListener('resize', function () {
       let iframe = document.querySelector('iframe');
       iframe.style.height = window.innerHeight * 0.7 + 'px';
@@ -157,10 +159,49 @@
 
   <!-- Encabezado -->
   <div class="header">
+    <!-- Carrusel de logos -->
     <div class="logo-carousel">
       <img src="alen.png" alt="Logo Univer">
-      <!-- Agrega más logos si lo deseas -->
+      <img src="aramluz.png" alt="Logo Reckitt Higiene">
+      <img src="arcor.png" alt="Logo Colgate">
+      <img src="bic.png" alt="Logo Vuala">
+      <img src="canels.png" alt="Logo Univer">
+      <img src="clorox.png" alt="Logo Alen">
+      <img src="colgate.png" alt="Logo Reckitt Higiene">
+      <img src="conagra.png" alt="Logo Colgate">
+      <img src="cristorey.jpg" alt="Logo Vuala">
+      <img src="electrolit.png" alt="Logo Univer">
+      <img src="energizer.png" alt="Logo Alen">
+      <img src="ganador.png" alt="Logo Reckitt Higiene">
+      <img src="gonac.png" alt="Logo Colgate">
+      <img src="heinz.png" alt="Logo Vuala">
+      <img src="johnsin.jpg" alt="Logo Univer">
+      <img src="kellogss.png" alt="Logo Alen">
+      <img src="lacentral.png" alt="Logo Reckitt Higiene">
+      <img src="lagloria.png" alt="Logo Colgate">
+      <img src="lamadrileña.jpg" alt="Logo Vuala">
+      <img src="lamorena.png" alt="Logo Univer">
+      <img src="licoreradelsur.jpeg" alt="Logo Alen">
+      <img src="meadjohnson.png" alt="Logo Reckitt Higiene">
+      <img src="mondelez.jpg" alt="Logo Colgate">
+      <img src="nissin.png" alt="Logo Vuala">
+      <img src="p&g.png" alt="Logo Univer">
+      <img src="peñafiel.png" alt="Logo Alen">
+      <img src="pinsa.jpeg" alt="Logo Reckitt Higiene">
+      <img src="reckitthigiene.png" alt="Logo Colgate">
+      <img src="sanchez.png" alt="Logo Vuala">
+      <img src="sanmarcosemp.jpg" alt="Logo Univer">
+      <img src="schettino.jpg" alt="Logo Alen">
+      <img src="skyy.png" alt="Logo Reckitt Higiene">
+      <img src="tajin.png" alt="Logo Colgate">
+      <img src="tuny.png" alt="Logo Univer">
+      <img src="unilever.png" alt="Logo Alen">
+      <img src="upfield.png" alt="Logo Reckitt Higiene">
+      <img src="verdevalle.png" alt="Logo Colgate">
+      <img src="viñareal.jpg" alt="Logo Vuala">
+      <img src="vuala.png" alt="Logo Univer">
     </div>
+    <!-- Título -->
     <div class="title">Calendario de Citas</div>
   </div>
 
