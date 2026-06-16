@@ -11,15 +11,9 @@
 
 <style>
 
-/* =======================
-BASE
-======================= */
+/* ===== BASE ===== */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Inter',sans-serif;
@@ -28,9 +22,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* =======================
-FONDO
-======================= */
+/* ===== FONDO ===== */
 
 .bg{
 position:fixed;
@@ -62,9 +54,7 @@ z-index:-2;
 pointer-events:none;
 }
 
-/* =======================
-HEADER
-======================= */
+/* ===== HEADER ===== */
 
 .header{
 width:95%;
@@ -82,25 +72,12 @@ border:1px solid rgba(255,255,255,.08);
 border-radius:24px;
 }
 
-.title h1{
-font-size:32px;
-font-weight:700;
-}
+.title h1{font-size:32px;font-weight:700;}
+.title p{color:#94a3b8;margin-top:5px;}
 
-.title p{
-color:#94a3b8;
-margin-top:5px;
-}
+/* ===== LOGOS ===== */
 
-/* =======================
-LOGOS
-======================= */
-
-.logo-container{
-width:55%;
-overflow:hidden;
-}
-
+.logo-container{width:55%;overflow:hidden;}
 .track{
 display:flex;
 gap:55px;
@@ -108,43 +85,30 @@ animation:scroll 22s linear infinite;
 align-items:center;
 }
 
-.track img{
-height:32px;
-filter:none;
-transition:.25s;
-}
-
-.track img:hover{
-transform:scale(1.08);
-}
+.track img{height:32px;}
 
 @keyframes scroll{
 from{transform:translateX(0);}
 to{transform:translateX(-50%);}
 }
 
-/* =======================
-RELOJ (MEJORADO)
-======================= */
+/* ===== RELOJ ===== */
 
 #clock{
 display:flex;
 align-items:center;
 gap:8px;
-
 padding:6px 12px;
-
 border-radius:999px;
 
 background:rgba(34,197,94,.12);
 border:1px solid rgba(34,197,94,.25);
 
-font-size:11px; /* 👈 MÁS CHICO */
+font-size:11px;
 color:#dcfce7;
 white-space:nowrap;
 }
 
-/* punto verde */
 #clock::before{
 content:"";
 width:8px;
@@ -156,14 +120,12 @@ animation:pulse 1.8s infinite;
 }
 
 @keyframes pulse{
-0%{transform:scale(1); opacity:1;}
-50%{transform:scale(1.4); opacity:.6;}
-100%{transform:scale(1); opacity:1;}
+0%{transform:scale(1);opacity:1;}
+50%{transform:scale(1.4);opacity:.6;}
+100%{transform:scale(1);opacity:1;}
 }
 
-/* =======================
-POWER BI
-======================= */
+/* ===== POWER BI ===== */
 
 .card{
 width:95%;
@@ -184,7 +146,31 @@ height:100%;
 border:none;
 }
 
-/* BOTÓN */
+/* ===== FOOTER (FIX BLANCO) ===== */
+
+.footer{
+width:95%;
+max-width:1500px;
+margin:20px auto;
+text-align:center;
+font-size:12px;
+
+/* 🔥 TODO EN BLANCO */
+color:#ffffff;
+}
+
+.footer a{
+color:#ffffff;
+text-decoration:none;
+font-weight:600;
+}
+
+.footer a:hover{
+opacity:.8;
+}
+
+/* ===== BOTÓN ===== */
+
 .bottom-bar{
 width:95%;
 max-width:1500px;
@@ -203,21 +189,7 @@ cursor:pointer;
 font-size:12px;
 }
 
-button:hover{
-background:rgba(255,255,255,.1);
-}
-
-/* FOOTER */
-.footer{
-width:95%;
-max-width:1500px;
-margin:20px auto;
-text-align:center;
-font-size:12px;
-color:#94a3b8;
-}
-
-.footer a{color:#60a5fa;}
+button:hover{background:rgba(255,255,255,.1);}
 
 </style>
 
@@ -242,42 +214,21 @@ color:#94a3b8;
 <div class="logo-container">
 <div class="track">
 
-<img src="alen.png">
-<img src="aramluz.png">
-<img src="arcor.png">
-<img src="bic.png">
-<img src="canels.png">
-<img src="clorox.png">
-<img src="colgate.png">
-<img src="conagra.png">
-<img src="electrolit.png">
-<img src="energizer.png">
-<img src="heinz.png">
-<img src="kellogss.png">
-<img src="lamorena.png">
-<img src="mondelez.jpg">
-<img src="unilever.png">
+<img src="alen.png"><img src="aramluz.png"><img src="arcor.png">
+<img src="bic.png"><img src="canels.png"><img src="clorox.png">
+<img src="colgate.png"><img src="conagra.png"><img src="electrolit.png">
+<img src="energizer.png"><img src="heinz.png"><img src="kellogss.png">
+<img src="lamorena.png"><img src="mondelez.jpg"><img src="unilever.png">
 
-<img src="alen.png">
-<img src="aramluz.png">
-<img src="arcor.png">
-<img src="bic.png">
-<img src="canels.png">
-<img src="clorox.png">
-<img src="colgate.png">
-<img src="conagra.png">
-<img src="electrolit.png">
-<img src="energizer.png">
-<img src="heinz.png">
-<img src="kellogss.png">
-<img src="lamorena.png">
-<img src="mondelez.jpg">
-<img src="unilever.png">
+<img src="alen.png"><img src="aramluz.png"><img src="arcor.png">
+<img src="bic.png"><img src="canels.png"><img src="clorox.png">
+<img src="colgate.png"><img src="conagra.png"><img src="electrolit.png">
+<img src="energizer.png"><img src="heinz.png"><img src="kellogss.png">
+<img src="lamorena.png"><img src="mondelez.jpg"><img src="unilever.png">
 
 </div>
 </div>
 
-<!-- RELOJ -->
 <div id="clock"></div>
 
 </header>
@@ -298,7 +249,13 @@ src="https://app.powerbi.com/view?r=eyJrIjoiMDA4OTFhNDQtZTljZS00YzUxLTkyZjEtMTE0
 
 <!-- FOOTER -->
 <footer class="footer">
-<p>Desarrollado por <a href="https://www.somoseltoro.com" target="_blank">Distribuidora El Toro</a></p>
+<p>
+Desarrollado por
+<a href="https://www.somoseltoro.com" target="_blank">
+Distribuidora El Toro
+</a>
+</p>
+
 <p>© 2008 - 2028 Todos los derechos reservados</p>
 </footer>
 
