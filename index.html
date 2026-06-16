@@ -1,239 +1,324 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reporte Power BI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 50vh;
-      overflow-x: hidden;
-    }
+<title>Calendario de Citas</title>
 
-    /* ===== CANVAS FONDO ===== */
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    /* ===== HEADER ===== */
-    .header {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #ffffff;
-      padding: 0;
-      color: #333;
-      animation: slideIn 0.2s ease-out;
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-    }
+<style>
 
-    @keyframes slideIn {
-      from { transform: translateX(-100%); }
-      to { transform: translateX(0); }
-    }
+/* =======================
+BASE
+======================= */
 
-    .logo-carousel {
-      display: flex;
-      animation: scroll 50s linear infinite;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .logo-carousel img {
-      width: 35px;
-      margin-right: 100px;
-      transition: transform 0.3s ease;
-    }
+body{
+font-family:'Inter',sans-serif;
+background:#030712;
+color:white;
+overflow-x:hidden;
+}
 
-    .logo-carousel img:hover {
-      transform: scale(1.1);
-    }
+/* =======================
+FONDO
+======================= */
 
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-100%); }
-    }
+.bg{
+position:fixed;
+inset:0;
+z-index:-4;
+background:
+radial-gradient(circle at 20% 20%, rgba(37,99,235,.35), transparent 35%),
+radial-gradient(circle at 80% 30%, rgba(6,182,212,.25), transparent 35%),
+radial-gradient(circle at 50% 80%, rgba(139,92,246,.25), transparent 40%),
+#030712;
+}
 
-    .title {
-      font-size: 0;
-      font-weight: bold;
-      font-family: 'Arial Narrow', Arial, sans-serif;
-      letter-spacing: 1px;
-    }
+.blur1,.blur2{
+position:fixed;
+width:500px;
+height:500px;
+filter:blur(180px);
+opacity:.15;
+z-index:-3;
+}
 
-    /* ===== REPORTE ===== */
-    .report-container {
-      width: 90%;
-      max-width: 1200px;
-      height: 80vh;
-      margin-top: 40px;
-      animation: fadeIn 2s ease-out;
-      border: 1px solid #ccc;
-      border-radius: 40px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      position: relative;
-      z-index: 2;
-      background: #fff;
-    }
+.blur1{background:#2563eb;top:-150px;left:-150px;}
+.blur2{background:#8b5cf6;bottom:-150px;right:-150px;}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+#particles{
+position:fixed;
+inset:0;
+z-index:-2;
+pointer-events:none;
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+/* =======================
+HEADER
+======================= */
 
-    /* ===== FOOTER ===== */
-    .footer {
-      margin-top: 0;
-      color: #555;
-      font-size: 11px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+.header{
+width:95%;
+max-width:1500px;
+margin:25px auto;
+padding:18px 25px;
 
-    .footer a {
-      color: #0073e6;
-      text-decoration: none;
-    }
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-    .footer a:hover {
-      text-decoration: underline;
-      color: #ff6347;
-    }
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(22px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+}
 
-    @media (max-width: 768px) {
-      .report-container {
-        height: 50vh;
-      }
-      .header {
-        width: 95%;
-      }
-    }
+.title h1{
+font-size:32px;
+font-weight:700;
+}
 
-  </style>
+.title p{
+color:#94a3b8;
+margin-top:5px;
+}
+
+/* =======================
+LOGOS
+======================= */
+
+.logo-container{
+width:55%;
+overflow:hidden;
+}
+
+.track{
+display:flex;
+gap:55px;
+animation:scroll 22s linear infinite;
+align-items:center;
+}
+
+.track img{
+height:32px;
+filter:none;
+transition:.25s;
+}
+
+.track img:hover{
+transform:scale(1.08);
+}
+
+@keyframes scroll{
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
+}
+
+/* =======================
+RELOJ (MEJORADO)
+======================= */
+
+#clock{
+display:flex;
+align-items:center;
+gap:8px;
+
+padding:6px 12px;
+
+border-radius:999px;
+
+background:rgba(34,197,94,.12);
+border:1px solid rgba(34,197,94,.25);
+
+font-size:11px; /* 👈 MÁS CHICO */
+color:#dcfce7;
+white-space:nowrap;
+}
+
+/* punto verde */
+#clock::before{
+content:"";
+width:8px;
+height:8px;
+border-radius:50%;
+background:#22c55e;
+display:inline-block;
+animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1); opacity:1;}
+50%{transform:scale(1.4); opacity:.6;}
+100%{transform:scale(1); opacity:1;}
+}
+
+/* =======================
+POWER BI
+======================= */
+
+.card{
+width:95%;
+max-width:1500px;
+height:80vh;
+margin:auto;
+
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(22px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:32px;
+overflow:hidden;
+}
+
+iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+/* BOTÓN */
+.bottom-bar{
+width:95%;
+max-width:1500px;
+margin:15px auto;
+display:flex;
+justify-content:flex-end;
+}
+
+button{
+padding:8px 14px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.05);
+color:white;
+cursor:pointer;
+font-size:12px;
+}
+
+button:hover{
+background:rgba(255,255,255,.1);
+}
+
+/* FOOTER */
+.footer{
+width:95%;
+max-width:1500px;
+margin:20px auto;
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+}
+
+.footer a{color:#60a5fa;}
+
+</style>
+
 </head>
 
 <body>
 
-  <!-- CANVAS DE FONDO -->
-  <canvas id="bg-canvas"></canvas>
+<div class="bg"></div>
+<div class="blur1"></div>
+<div class="blur2"></div>
 
-  <!-- ENCABEZADO -->
-  <div class="header">
-    <div class="logo-carousel">
-      <img src="alen.png" alt="Logo Alen">
-      <img src="aramluz.png" alt="Logo Aramluz">
-      <img src="arcor.png" alt="Logo Arcor">
-      <img src="bic.png" alt="Logo Bic">
-      <img src="canels.png" alt="Logo Canels">
-      <img src="clorox.png" alt="Logo Clorox">
-      <img src="colgate.png" alt="Logo Colgate">
-      <img src="conagra.png" alt="Logo Conagra">
-      <img src="electrolit.png" alt="Logo Electrolit">
-      <img src="energizer.png" alt="Logo Energizer">
-      <img src="heinz.png" alt="Logo Heinz">
-      <img src="kellogss.png" alt="Logo Kelloggs">
-      <img src="lamorena.png" alt="Logo La Morena">
-      <img src="mondelez.jpg" alt="Logo Mondelez">
-      <img src="unilever.png" alt="Logo Unilever">
-    </div>
-    <div class="title">Calendario de Citas</div>
-  </div>
+<canvas id="particles"></canvas>
 
-  <!-- REPORTE POWER BI -->
-  <div class="report-container">
-    <iframe title="Calendario" width="600" height="373.5" 
-      src="https://app.powerbi.com/view?r=eyJrIjoiYTc1N2Y4MTgtOWQ5ZS00NTIwLWI4NjgtYWJmNWY1ZjJkYmRlIiwidCI6ImFhODFiNGU2LTllMTMtNDUxNC1iNzkwLTY1YWUyNDZlZjExZiIsImMiOjR9" 
-      frameborder="0" allowFullScreen="true"></iframe>
-  </div>
+<!-- HEADER -->
+<header class="header">
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <p>Desarrollado por <a href="https://www.somoseltoro.com" target="_blank">Distribuidora el Toro</a></p>
-    <p>Todos los derechos reservados 2008-2028</p>
-  </div>
+<div class="title">
+<h1>Calendario de Citas</h1>
+<p>Monitoreo y gestión en tiempo real</p>
+</div>
 
-  <!-- ===== SCRIPT CANVAS DINÁMICO ===== -->
-  <script>
-    const canvas = document.getElementById("bg-canvas");
-    const ctx = canvas.getContext("2d");
+<div class="logo-container">
+<div class="track">
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
+<img src="alen.png">
+<img src="aramluz.png">
+<img src="arcor.png">
+<img src="bic.png">
+<img src="canels.png">
+<img src="clorox.png">
+<img src="colgate.png">
+<img src="conagra.png">
+<img src="electrolit.png">
+<img src="energizer.png">
+<img src="heinz.png">
+<img src="kellogss.png">
+<img src="lamorena.png">
+<img src="mondelez.jpg">
+<img src="unilever.png">
 
-    const particles = [];
-    const COUNT = 100;
-    const MAX_DIST = 130;
+<img src="alen.png">
+<img src="aramluz.png">
+<img src="arcor.png">
+<img src="bic.png">
+<img src="canels.png">
+<img src="clorox.png">
+<img src="colgate.png">
+<img src="conagra.png">
+<img src="electrolit.png">
+<img src="energizer.png">
+<img src="heinz.png">
+<img src="kellogss.png">
+<img src="lamorena.png">
+<img src="mondelez.jpg">
+<img src="unilever.png">
 
-    for (let i = 0; i < COUNT; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        r: Math.random() * 2 + 1
-      });
-    }
+</div>
+</div>
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+<!-- RELOJ -->
+<div id="clock"></div>
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
+</header>
 
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+<!-- POWER BI -->
+<section class="card">
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0,90,220,0.8)";
-        ctx.fill();
+<iframe
+src="https://app.powerbi.com/view?r=eyJrIjoiMDA4OTFhNDQtZTljZS00YzUxLTkyZjEtMTE0MjA0ZjAyMWMwIiwidCI6ImFhODFiNGU2LTllMTMtNDUxNC1iNzkwLTY1YWUyNDZlZjExZiIsImMiOjR9">
+</iframe>
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < MAX_DIST) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0,90,220,${1 - dist / MAX_DIST})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
+</section>
 
-      requestAnimationFrame(animate);
-    }
+<!-- BOTÓN -->
+<div class="bottom-bar">
+<button onclick="openFull()">🔍 Abrir en ventana nueva</button>
+</div>
 
-    animate();
-  </script>
+<!-- FOOTER -->
+<footer class="footer">
+<p>Desarrollado por <a href="https://www.somoseltoro.com" target="_blank">Distribuidora El Toro</a></p>
+<p>© 2008 - 2028 Todos los derechos reservados</p>
+</footer>
+
+<script>
+
+/* reloj */
+setInterval(()=>{
+document.getElementById("clock").innerText =
+new Date().toLocaleString("es-MX");
+},1000);
+
+/* abrir */
+function openFull(){
+window.open(
+"https://app.powerbi.com/view?r=eyJrIjoiMDA4OTFhNDQtZTljZS00YzUxLTkyZjEtMTE0MjA0ZjAyMWMwIiwidCI6ImFhODFiNGU2LTllMTMtNDUxNC1iNzkwLTY1YWUyNDZlZjExZiIsImMiOjR9",
+"_blank"
+);
+}
+
+</script>
 
 </body>
 </html>
